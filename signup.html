@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thriftt_Off - Sign Up</title>
+    <link rel="icon" href="Images/Logo.jpg" type="image/png" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Oswald", sans-serif;
+        background: linear-gradient(
+          135deg,
+          #000000 0%,
+          #1a1a1a 50%,
+          #000000 100%
+        );
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding: 1rem 0;
+      }
+
+      body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+            circle at 30% 30%,
+            rgba(255, 255, 255, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 70% 70%,
+            rgba(255, 255, 255, 0.05) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+      }
+
+      .signup-container {
+        background: rgba(0, 0, 0, 0.9);
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-radius: 0;
+        padding: 2rem;
+        width: 100%;
+        max-width: 500px;
+        position: relative;
+        box-shadow: 0 0 50px rgba(255, 255, 255, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        transform: translateY(0);
+        transition: all 0.3s ease;
+        margin: 0.5rem;
+        max-height: 95vh;
+        overflow-y: auto;
+      }
+
+      .signup-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 60px rgba(255, 255, 255, 0.15),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      }
+
+      .signup-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, #ffffff, transparent);
+      }
+
+      .brand-title {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #ffffff;
+        text-align: center;
+        margin-bottom: 0.3rem;
+        letter-spacing: 3px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        position: relative;
+      }
+
+      .brand-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #ffffff, transparent);
+      }
+
+      .subtitle {
+        text-align: center;
+        color: #cccccc;
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+        font-weight: 300;
+        letter-spacing: 1px;
+      }
+
+      .form-row {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group {
+        margin-bottom: 1rem;
+        position: relative;
+        flex: 1;
+      }
+
+      .form-group.full-width {
+        flex: 1 1 100%;
+      }
+
+      .form-group label {
+        display: block;
+        color: #ffffff;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 0.8rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 0;
+        color: #ffffff;
+        font-size: 0.9rem;
+        font-family: "Oswald", sans-serif;
+        transition: all 0.3s ease;
+        outline: none;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus {
+        border-color: #ffffff;
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+      }
+
+      .form-group input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+        font-weight: 300;
+      }
+
+      .form-group select {
+        cursor: pointer;
+      }
+
+      .form-group select option {
+        background: #000000;
+        color: #ffffff;
+      }
+
+      .checkbox-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .checkbox-wrapper {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.8rem;
+      }
+
+      .checkbox-wrapper input[type="checkbox"] {
+        width: auto;
+        margin-right: 0.5rem;
+        accent-color: #ffffff;
+      }
+
+      .checkbox-wrapper label {
+        font-size: 0.9rem;
+        font-weight: 300;
+        color: #cccccc;
+        text-transform: none;
+        letter-spacing: 0.5px;
+        margin-bottom: 0;
+      }
+
+      .checkbox-wrapper a {
+        color: #ffffff;
+        text-decoration: underline;
+        transition: color 0.3s ease;
+      }
+
+      .checkbox-wrapper a:hover {
+        color: #cccccc;
+      }
+
+      .signup-btn {
+        width: 100%;
+        padding: 1.2rem;
+        background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+        color: #000000;
+        border: none;
+        border-radius: 0;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: "Oswald", sans-serif;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .signup-btn:hover {
+        background: linear-gradient(135deg, #f0f0f0 0%, #ffffff 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+      }
+
+      .signup-btn:active {
+        transform: translateY(0);
+      }
+
+      .signup-btn:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+
+      .social-signup {
+        margin-top: 1.5rem;
+        text-align: center;
+      }
+
+      .social-signup p {
+        color: #cccccc;
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .social-btn {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        margin: 0 0.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        line-height: 48px;
+        font-weight: 600;
+        color: #ffffff;
+      }
+
+      .social-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+      }
+
+      .login-link {
+        text-align: center;
+        margin-top: 1.5rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .login-link p {
+        color: #cccccc;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .login-link a {
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+      }
+
+      .login-link a:hover {
+        color: #cccccc;
+      }
+
+      .password-strength {
+        margin-top: 0.5rem;
+        font-size: 0.8rem;
+        color: #cccccc;
+      }
+
+      .strength-bar {
+        height: 3px;
+        background: rgba(255, 255, 255, 0.1);
+        margin-top: 0.5rem;
+        overflow: hidden;
+      }
+
+      .strength-fill {
+        height: 100%;
+        width: 0%;
+        transition: all 0.3s ease;
+      }
+
+      .strength-weak {
+        background: #ff4444;
+        width: 25%;
+      }
+      .strength-fair {
+        background: #ffaa00;
+        width: 50%;
+      }
+      .strength-good {
+        background: #44ff44;
+        width: 75%;
+      }
+      .strength-strong {
+        background: #00ff00;
+        width: 100%;
+      }
+
+      @media (max-width: 768px) {
+        .form-row {
+          flex-direction: column;
+          gap: 0;
+        }
+
+        .signup-container {
+          padding: 1.5rem;
+          margin: 0.5rem;
+        }
+
+        .brand-title {
+          font-size: 2rem;
+        }
+
+        .form-group input,
+        .form-group select {
+          padding: 0.7rem;
+          font-size: 0.85rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="signup-container">
+      <h1 class="brand-title">THRIFTT_OFF</h1>
+      <p class="subtitle">Create Your Account</p>
+
+      <form id="signupForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              placeholder="John"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              placeholder="Doe"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="john@example.com"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="johndoe"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Create a strong password"
+            required
+          />
+          <div class="password-strength">
+            <div class="strength-text">
+              Password Strength: <span id="strengthText">Very Weak</span>
+            </div>
+            <div class="strength-bar">
+              <div class="strength-fill" id="strengthBar"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            placeholder="Confirm your password"
+            required
+          />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="+91 1234567890"
+            />
+          </div>
+          <div class="form-group">
+            <label for="dateOfBirth">Date of Birth</label>
+            <input type="date" id="dateOfBirth" name="dateOfBirth" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <select id="gender" name="gender">
+            <option value="">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+            <option value="prefer-not-to-say">Prefer not to say</option>
+          </select>
+        </div>
+
+        <div class="checkbox-group">
+          <div class="checkbox-wrapper">
+            <input type="checkbox" id="terms" name="terms" required />
+            <label for="terms"
+              >I agree to the
+              <a href="#" target="_blank">Terms of Service</a> and
+              <a href="#" target="_blank">Privacy Policy</a></label
+            >
+          </div>
+          <div class="checkbox-wrapper">
+            <input type="checkbox" id="newsletter" name="newsletter" />
+            <label for="newsletter"
+              >Subscribe to our newsletter for exclusive deals and
+              updates</label
+            >
+          </div>
+        </div>
+
+        <button type="submit" class="signup-btn">Create Account</button>
+      </form>
+
+      <div class="social-signup">
+        <p>Or Sign Up With</p>
+        <div class="social-btn" onclick="socialSignup('google')">G</div>
+        <div class="social-btn" onclick="socialSignup('facebook')">F</div>
+        <div class="social-btn" onclick="socialSignup('twitter')">T</div>
+      </div>
+
+      <div class="login-link">
+        <p>Already have an account?</p>
+        <a href="login.html">Login Here</a>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("signupForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const formData = new FormData(this);
+          const password = formData.get("password");
+          const confirmPassword = formData.get("confirmPassword");
+          const terms = formData.get("terms");
+
+          // Validation
+          if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+          }
+
+          if (!terms) {
+            alert("Please accept the terms of service!");
+            return;
+          }
+
+          if (password.length < 8) {
+            alert("Password must be at least 8 characters long!");
+            return;
+          }
+
+          // Simulate signup process
+          const btn = document.querySelector(".signup-btn");
+          btn.textContent = "Creating Account...";
+          btn.disabled = true;
+
+          setTimeout(() => {
+            alert("Account created successfully! Welcome to Thriftt_Off");
+            btn.textContent = "Create Account";
+            btn.disabled = false;
+            // Redirect to login or dashboard
+            // window.location.href = 'login.html';
+          }, 2000);
+        });
+
+      // Password strength checker
+      document
+        .getElementById("password")
+        .addEventListener("input", function () {
+          const password = this.value;
+          const strengthBar = document.getElementById("strengthBar");
+          const strengthText = document.getElementById("strengthText");
+
+          let strength = 0;
+          let text = "Very Weak";
+          let className = "strength-weak";
+
+          if (password.length >= 8) strength++;
+          if (password.match(/[a-z]/)) strength++;
+          if (password.match(/[A-Z]/)) strength++;
+          if (password.match(/[0-9]/)) strength++;
+          if (password.match(/[^a-zA-Z0-9]/)) strength++;
+
+          switch (strength) {
+            case 0:
+            case 1:
+              text = "Very Weak";
+              className = "strength-weak";
+              break;
+            case 2:
+              text = "Weak";
+              className = "strength-weak";
+              break;
+            case 3:
+              text = "Fair";
+              className = "strength-fair";
+              break;
+            case 4:
+              text = "Good";
+              className = "strength-good";
+              break;
+            case 5:
+              text = "Strong";
+              className = "strength-strong";
+              break;
+          }
+
+          strengthText.textContent = text;
+          strengthBar.className = "strength-fill " + className;
+        });
+
+      function socialSignup(platform) {
+        alert(
+          `${
+            platform.charAt(0).toUpperCase() + platform.slice(1)
+          } signup would be implemented here`
+        );
+      }
+
+      // Add interactive effects
+      document.addEventListener("DOMContentLoaded", function () {
+        const inputs = document.querySelectorAll("input, select");
+        inputs.forEach((input) => {
+          input.addEventListener("focus", function () {
+            this.parentElement.style.transform = "translateX(2px)";
+          });
+
+          input.addEventListener("blur", function () {
+            this.parentElement.style.transform = "translateX(0)";
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
